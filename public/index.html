@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="slop">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#09080d" />
+  <meta name="description" content="AISlopMediaBox — your media, your server, zero cloud. Certified slop." />
+  <title>AISlopMediaBox</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/app.css" />
+  <link rel="stylesheet" href="/css/account.css" />
+  <link rel="stylesheet" href="/css/player.css" />
+</head>
+<body>
+  <a class="skip-link" href="#view">Skip to content</a>
+  <div id="boot-screen" class="boot-screen">
+    <div class="boot-mark">◉</div>
+    <div class="boot-text">warming up the slop...</div>
+  </div>
+  <div id="app" class="app" hidden>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/" data-link>
+        <span class="brand-mark">◉</span>
+        <span class="brand-copy"><strong id="brand-name">AISlopMediaBox</strong><small>certified slop</small></span>
+      </a>
+      <nav class="side-nav" id="side-nav" aria-label="Main navigation"></nav>
+      <div class="side-foot">
+        <div class="privacy-chip" title="No telemetry. No cloud. No snitching.">🔒 local-only</div>
+        <button class="ghost-btn profile-chip" id="profile-chip" type="button">
+          <span class="avatar" id="me-avatar">A</span>
+          <span class="profile-name" id="me-name">...</span>
+          <span class="chev">⌄</span>
+        </button>
+      </div>
+    </aside>
+    <div class="main-col">
+      <header class="topbar">
+        <button class="icon-btn menu-toggle" id="menu-toggle" aria-label="Menu">☰</button>
+        <div class="topbar-brand"><span class="brand-mark small">◉</span><span id="topbar-brand-name">AISlopMediaBox</span></div>
+        <form class="search-box" id="search-form" role="search">
+          <span class="search-icon">⌕</span>
+          <input id="global-search" type="search" placeholder="Search the slop…  /" autocomplete="off" enterkeyhint="search" aria-label="Search" />
+          <kbd>/</kbd>
+        </form>
+        <div class="topbar-actions">
+          <button class="icon-btn" id="random-btn" title="Random certified banger" aria-label="Random title">🎲</button>
+          <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">◐</button>
+          <button class="icon-btn" id="tv-btn" title="TV mode" aria-label="Toggle TV mode">📺</button>
+        </div>
+      </header>
+      <div class="scan-banner" id="scan-banner" hidden>
+        <span class="spinner"></span>
+        <span id="scan-banner-text">Scanning…</span>
+        <a href="/admin#jobs" class="mini-link">details</a>
+      </div>
+      <main id="view" tabindex="-1"><div class="view-loading"><div class="spinner"></div></div></main>
+      <footer class="app-footer">
+        <span>AISlopMediaBox <span id="footer-version"></span> — AI slop, self-hosted with love.</span>
+        <a href="/admin" class="mini-link">admin</a>
+      </footer>
+    </div>
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Mobile navigation"></nav>
+  </div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <div id="modal-root"></div>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+node_modules
+data
+*.log
+.DS_Store
+dist
+test/tmp
+.omp/
+test/tmp-server.log
+.env
+
+docker-compose.override.yml

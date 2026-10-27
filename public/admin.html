@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" data-theme="slop">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#09080d" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="AISlopMediaBox control room — libraries, users, jobs, logs, settings. Local only." />
+  <title>Control room — AISlopMediaBox</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="adm-body">
+  <a class="skip-link" href="#adm-main">Skip to content</a>
+
+  <div id="adm-boot" class="adm-boot" role="status" aria-live="polite">
+    <div class="adm-boot-mark">◉</div>
+    <div class="adm-boot-text">checking credentials…</div>
+  </div>
+
+  <div id="adm-shell" class="adm-shell" hidden>
+    <aside class="adm-sidebar" id="adm-sidebar" aria-label="Admin sections">
+      <a class="adm-brand" href="/admin" aria-label="Admin dashboard">
+        <span class="adm-brand-mark" aria-hidden="true">◉</span>
+        <span class="adm-brand-copy">
+          <strong id="adm-brand-name">AISlopMediaBox</strong>
+          <small>control room</small>
+        </span>
+      </a>
+      <nav class="adm-nav" id="adm-nav" aria-label="Server management"></nav>
+      <div class="adm-side-foot">
+        <div class="adm-local-chip" title="No telemetry. No cloud. No external assets.">🔒 local-only</div>
+        <div class="adm-side-user" id="adm-side-user"></div>
+        <a class="btn ghost small block" href="/" title="Back to the media library">← Back to app</a>
+      </div>
+    </aside>
+
+    <div class="adm-scrim" id="adm-scrim" hidden></div>
+
+    <div class="adm-main">
+      <header class="adm-topbar">
+        <button class="icon-btn adm-menu" id="adm-menu" type="button" aria-label="Toggle admin navigation" aria-expanded="false" aria-controls="adm-sidebar">☰</button>
+        <div class="adm-topbar-title">
+          <span class="adm-topbar-kicker">admin</span>
+          <strong id="adm-crumb">Dashboard</strong>
+        </div>
+        <div class="adm-topbar-actions">
+          <button class="adm-health" id="adm-health" type="button" title="Server health — click to re-check">
+            <span class="adm-health-dot" aria-hidden="true"></span>
+            <span class="adm-health-text" aria-live="polite">checking</span>
+          </button>
+          <a class="btn small adm-back" href="/">Back to app</a>
+        </div>
+      </header>
+
+      <div class="adm-alert" id="adm-alert" role="alert" hidden></div>
+      <main id="adm-main" class="adm-view" tabindex="-1">
+        <div class="adm-view-loading"><div class="spinner"></div><span>loading the control room…</span></div>
+      </main>
+      <footer class="adm-footer">
+        <span>AISlopMediaBox control room — local-only, no telemetry, no cloud.</span>
+        <span id="adm-footer-meta"></span>
+      </footer>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <div id="modal-root"></div>
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

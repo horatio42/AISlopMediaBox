@@ -1,0 +1,52 @@
+services:
+  aislopmediabox:
+    build: .
+    container_name: aislopmediabox
+    restart: unless-stopped
+    ports:
+      # Host port first. Copy .env.example to .env to change without editing this file.
+      - "${SLOP_PORT:-3100}:3100"
+    environment:
+      # Change these before exposing the box to your network. Default creds are a meme, not security.
+      ADMIN_USER: "${ADMIN_USER:-admin}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:-slop123}"
+      # Set to 0 to skip the auto-generated demo library on first boot.
+      SEED_DEMO: "${SEED_DEMO:-1}"
+      DEMO_MODE: "${DEMO_MODE:-1}"
+      # Optional: supply your own TMDB key to enable online metadata matching. Off by default.
+      TMDB_API_KEY: "${TMDB_API_KEY:-}"
+      TVDB_API_KEY: "${TVDB_API_KEY:-}"
+      OMDB_API_KEY: "${OMDB_API_KEY:-}"
+      TZ: "${TZ:-Etc/UTC}"
+      PUID: "${PUID:-1000}"
+      PGID: "${PGID:-1000}"
+      SECURE_COOKIES: "${SECURE_COOKIES:-0}"
+      TRUST_PROXY: "${TRUST_PROXY:-0}"
+      SESSION_DAYS: "${SESSION_DAYS:-30}"
+      MAX_TRANSCODE_HEIGHT: "${MAX_TRANSCODE_HEIGHT:-1080}"
+      TRANSCODE_PRESET: "${TRANSCODE_PRESET:-veryfast}"
+      TRANSCODE_CONCURRENCY: "${TRANSCODE_CONCURRENCY:-2}"
+      HLS_SEGMENT_SECONDS: "${HLS_SEGMENT_SECONDS:-4}"
+      TRANSCODE_HWACCEL: "${TRANSCODE_HWACCEL:-auto}"
+      TRANSCODE_HWACCEL_DEVICE: "${TRANSCODE_HWACCEL_DEVICE:-}"
+      TRANSCODE_THROTTLE_SECONDS: "${TRANSCODE_THROTTLE_SECONDS:-120}"
+      SCAN_CONCURRENCY: "${SCAN_CONCURRENCY:-4}"
+      LOG_LEVEL: "${LOG_LEVEL:-info}"
+    volumes:
+      # Everything persistent: database, caches, thumbnails, generated config.
+      - ./data:/data
+      # Optional: your own media, mounted read-only. Add libraries in Admin -> Libraries,
+      # or point an ingestion source at /media/... and let the box organize it.
+      # Set MEDIA_HOST_DIR=/path/to/media in .env to mount an external folder.
+      - "${MEDIA_HOST_DIR:-./media}:/media:ro"
+    # Hardware acceleration: pass the host's render nodes/GPU into the container, then pick
+    # auto in Admin -> Settings. Uncomment the block for VAAPI/QSV/V4L2 (Intel/AMD/Raspberry Pi)
+    # and add group_add for the host's render/video gids (usually 989/44; check `getent group render`).
+    # devices:
+    #   - /dev/dri:/dev/dri
+    # group_add:
+    #   - "989"
+    #   - "44"
+    # NVIDIA: install nvidia-container-toolkit and add `gpus: all` plus runtime: nvidia.
+    # RK3588 (Orange Pi 5): also pass /dev/mpp_service and use an ffmpeg built with --enable-rkmpp.
+    # Single container. No redis, no postgres, no sidecars, no cloud. That's the whole stack.
